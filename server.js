@@ -29,12 +29,14 @@ app.post('/send', (req, res) =>{
 
 
     request.post(
-        'http://34.91.232.208:9200/users/_doc',
+        'http://34.65.223.230:9200/post/_doc',
         { json: {
-                "firstName":"Jan",
-                "lastname":"Mastalier",
-                "username":req.body.posting,
-                "password":"test"
+                "emoji":"U+1F970",
+                "text":req.body.posting,
+                "userID": 1,
+                "timestamp": time.now()
+
+
             } },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -45,13 +47,13 @@ app.post('/send', (req, res) =>{
 
     const MongoClient = require('mongodb').MongoClient;
     const assert = require('assert');
-    const uri = "mongodb+srv://xx69xx:xx69xx@prdke-database-j4dwt.gcp.mongodb.net/test?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://An_Jan:sdf@prdke-database-j4dwt.gcp.mongodb.net/test?retryWrites=true&w=majority";
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
         const collection = client.db("Test").collection("test1");
         // perform actions on the collection object
         collection.insertOne(
-            {emoji: req.body.posting, status:"", userId:"", time: time.now()
+            {emoji:"U+1F970", text: req.body.posting, userId:1, time: time.now()
             }
         );
         //html form soll dei nutzer id sein aber unsichtbar für Nutzer
